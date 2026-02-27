@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer Ton Site — Votre site web professionnel en 48h</title>
+    <meta name="description"
+        content="Nous créons des sites web professionnels pour les petites entreprises françaises. Design moderne, SEO, mobile-first. Devis gratuit en 24h.">
+    <meta property="og:title" content="Créer Ton Site — Sites web pour petites entreprises">
+    <meta property="og:description"
+        content="Un site web professionnel, rapide et beau pour votre entreprise. À partir de 490€.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
+    <header class="header" id="header" role="banner">
+        <a href="#" class="header__logo" aria-label="Créer Ton Site — Retour à l'accueil">
+            <div class="logo-mark">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                    <rect width="28" height="28" rx="8" fill="#C9A96E" />
+                    <path d="M7 14h14M14 7v14" stroke="#0D0D0D" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+            </div>
+            <span class="logo-text">créer<span class="logo-accent">ton</span>site</span>
+        </a>
+        <nav class="header__nav" aria-label="Navigation principale">
+            <a href="#services" class="header__nav-link">Services</a>
+            <a href="#process" class="header__nav-link">Notre process</a>
+            <a href="#portfolio" class="header__nav-link">Réalisations</a>
+            <a href="#pricing" class="header__nav-link">Tarifs</a>
+            <a href="#faq" class="header__nav-link">FAQ</a>
+        </nav>
+        <div class="header__actions">
+            <a href="#contact" class="btn btn-ghost">Nous contacter</a>
+            <a href="#pricing" class="btn btn-primary">Devis gratuit</a>
+        </div>
+        <button class="header__burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false"
+            aria-controls="mobileMenu">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu mobile" aria-modal="true" hidden>
+        <nav>
+            <a href="#services" class="mobile-menu__link">Services</a>
+            <a href="#process" class="mobile-menu__link">Notre process</a>
+            <a href="#portfolio" class="mobile-menu__link">Réalisations</a>
+            <a href="#pricing" class="mobile-menu__link">Tarifs</a>
+            <a href="#faq" class="mobile-menu__link">FAQ</a>
+        </nav>
+        <a href="#pricing" class="btn btn-primary" style="width:100%;text-align:center;margin-top:24px">Devis
+            gratuit</a>
+    </div>
+
+    <main id="main">
+
+        <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="hero__bg" aria-hidden="true">
+                <div class="hero__bg-grid"></div>
+                <div class="hero__bg-glow"></div>
+            </div>
+            <div class="container">
+                <div class="hero__inner">
+                    <div class="hero__content">
+                        <div class="hero__badge animate-fade-up" style="animation-delay:0ms">
+                            <span class="badge-dot"></span>
+                            Disponible — livraison en 48h
+                        </div>
+                        <h1 class="hero__title animate-fade-up" id="hero-heading" style="animation-delay:80ms">
+                            Votre site web<br>
+                            <em>professionnel</em><br>
+                            en 48 heures.
+                        </h1>
+                        <p class="hero__body animate-fade-up" style="animation-delay:160ms">
+                            Nous créons des sites web modernes, rapides et optimisés pour les petites entreprises
+                            françaises. Sans jargon, sans surprise, sans engagement.
+                        </p>
+                        <div class="hero__actions animate-fade-up" style="animation-delay:240ms">
+                            <a href="#pricing" class="btn btn-primary btn-lg">Commencer maintenant</a>
+                            <a href="#portfolio" class="btn btn-outline btn-lg">Voir nos réalisations</a>
+                        </div>
+                        <div class="hero__trust animate-fade-up" style="animation-delay:320ms">
+                            <div class="trust-avatars" aria-hidden="true">
+                                <div class="trust-avatar" style="background:#C9A96E;color:#0D0D0D">M</div>
+                                <div class="trust-avatar" style="background:#3C4257;color:#fff">S</div>
+                                <div class="trust-avatar" style="background:#2D7D46;color:#fff">A</div>
+                                <div class="trust-avatar" style="background:#1A5276;color:#fff">L</div>
+                            </div>
+                            <p class="trust-text"><strong>+200 entreprises</strong> nous font confiance</p>
+                        </div>
+                    </div>
+                    <div class="hero__visual animate-fade-left" style="animation-delay:200ms" aria-hidden="true">
+                        <div class="hero__mockup">
+                            <div class="mockup__browser">
+                                <div class="mockup__bar">
+                                    <span class="mockup__dot red"></span>
+                                    <span class="mockup__dot yellow"></span>
+                                    <span class="mockup__dot green"></span>
+                                    <div class="mockup__url">monentreprise.fr</div>
+                                </div>
+                                <div class="mockup__screen">
+                                    <div class="mockup__hero-img"></div>
+                                    <div class="mockup__content">
+                                        <div class="mockup__line w-60 tall accent"></div>
+                                        <div class="mockup__line w-80"></div>
+                                        <div class="mockup__line w-70"></div>
+                                        <div class="mockup__btn"></div>
+                                    </div>
+                                    <div class="mockup__cards">
+                                        <div class="mockup__card"></div>
+                                        <div class="mockup__card"></div>
+                                        <div class="mockup__card"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mockup__badge mockup__badge--perf">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#C9A96E" />
+                                </svg>
+                                <span>Score 99</span>
+                            </div>
+                            <div class="mockup__badge mockup__badge--mobile">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                                    <rect x="5" y="2" width="14" height="20" rx="2" stroke="#2D7D46" stroke-width="2" />
+                                    <circle cx="12" cy="18" r="1" fill="#2D7D46" />
+                                </svg>
+                                <span>Mobile ✓</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ CLIENTS STRIP ═══════════════════════════ -->
+        <section class="clients" aria-label="Nos clients">
+            <div class="container">
+                <p class="clients__label">Ils nous font confiance</p>
+                <div class="clients__logos" aria-hidden="true">
+                    <div class="client-logo">La Boulangerie<br>du Coin</div>
+                    <div class="client-logo">Plomberie<br>Dumont</div>
+                    <div class="client-logo">Salon Élise</div>
+                    <div class="client-logo">Auto École<br>Martin</div>
+                    <div class="client-logo">Café des<br>Artistes</div>
+                    <div class="client-logo">Menuiserie<br>Lefebvre</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
+        <section class="section" id="services" aria-labelledby="services-heading">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">Ce que nous faisons</span>
+                    <h2 class="section__title" id="services-heading">Un site qui travaille<br>à votre place</h2>
+                    <p class="section__subtitle">Chaque site est conçu pour convertir vos visiteurs en clients — pas
+                        juste pour être beau.</p>
+                </div>
+                <div class="services-grid">
+                    <article class="service-card card-hover" tabindex="0">
+                        <div class="service-card__icon" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor"
+                                    stroke-width="2" />
+                                <path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Design sur-mesure</h3>
+                        <p class="service-card__desc">Un design unique qui reflète votre identité. Pas de template
+                            générique, un vrai travail de création adapté à votre secteur.</p>
+                        <ul class="service-card__list">
+                            <li>Identité visuelle cohérente</li>
+                            <li>Photos professionnelles intégrées</li>
+                            <li>Animations subtiles</li>
+                        </ul>
+                    </article>
+                    <article class="service-card card-hover" tabindex="0">
+                        <div class="service-card__icon accent" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
+                                <path d="M12 8v4l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">Livraison en 48h</h3>
+                        <p class="service-card__desc">Vous avez besoin de résultats rapidement. Nous livrons votre site
+                            fonctionnel en 48 heures après validation du brief.</p>
+                        <ul class="service-card__list">
+                            <li>Brief en ligne en 15 minutes</li>
+                            <li>Première version sous 24h</li>
+                            <li>Retouches incluses</li>
+                        </ul>
+                    </article>
+                    <article class="service-card card-hover" tabindex="0">
+                        <div class="service-card__icon green" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3 class="service-card__title">SEO & Performance</h3>
+                        <p class="service-card__desc">Un site rapide et optimisé pour Google. Vos clients locaux vous
+                            trouvent en premier — avant vos concurrents.</p>
+                        <ul class="service-card__list">
+                            <li>Score Lighthouse &gt; 95</li>
+                            <li>SEO local optimisé</li>
+                            <li>Google My Business intégré</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ PROCESS ═══════════════════════════ -->
+        <section class="section section--dark" id="process" aria-labelledby="process-heading">
+            <div class="container">
+                <div class="section__header section__header--light">
+                    <span class="section__eyebrow light">Comment ça marche</span>
+                    <h2 class="section__title light" id="process-heading">Simple comme bonjour</h2>
+                    <p class="section__subtitle light">Trois étapes, zéro prise de tête. Vous restez concentré sur votre
+                        métier.</p>
+                </div>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number" aria-hidden="true">01</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Brief en ligne</h3>
+                            <p class="step-desc">Remplissez notre formulaire en 15 minutes. Nom, secteur, couleurs,
+                                pages souhaitées. On s'occupe du reste.</p>
+                        </div>
+                    </div>
+                    <div class="process-divider" aria-hidden="true"></div>
+                    <div class="process-step">
+                        <div class="step-number" aria-hidden="true">02</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Nous créons</h3>
+                            <p class="step-desc">Nos designers et développeurs construisent votre site. Vous recevez une
+                                première version sous 24h pour validation.</p>
+                        </div>
+                    </div>
+                    <div class="process-divider" aria-hidden="true"></div>
+                    <div class="process-step">
+                        <div class="step-number" aria-hidden="true">03</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Mise en ligne</h3>
+                            <p class="step-desc">Après vos retouches (illimitées), on met votre site en ligne.
+                                Hébergement, domaine, SSL — tout est inclus.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ FEATURES ALTERNATING ═══════════════════════════ -->
+        <section class="section" id="portfolio" aria-labelledby="features-heading">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">Pourquoi nous choisir</span>
+                    <h2 class="section__title" id="features-heading">Tout ce dont<br>votre entreprise a besoin</h2>
+                </div>
+
+                <div class="feature-block">
+                    <div class="feature-block__visual" aria-hidden="true">
+                        <div class="feature-preview">
+                            <div class="feature-preview__header">
+                                <div class="fp-dot"></div>
+                                <div class="fp-dot"></div>
+                                <div class="fp-dot"></div>
+                            </div>
+                            <div class="feature-preview__body">
+                                <div class="fp-bar w-100 tall accent-bar"></div>
+                                <div class="fp-row">
+                                    <div class="fp-card"></div>
+                                    <div class="fp-card"></div>
+                                </div>
+                                <div class="fp-bar w-80"></div>
+                                <div class="fp-bar w-60"></div>
+                            </div>
+                            <div class="feature-preview__badge">Mobile First</div>
+                        </div>
+                    </div>
+                    <div class="feature-block__content">
+                        <span class="feature-label">100% Mobile</span>
+                        <h3 class="feature-title">Parfait sur tous les écrans</h3>
+                        <p class="feature-desc">En France, 67% des recherches locales se font sur mobile. Votre site
+                            s'adapte parfaitement à tous les appareils — téléphone, tablette, ordinateur.</p>
+                        <ul class="feature-checklist">
+                            <li>Design responsive testé sur 20+ appareils</li>
+                            <li>Chargement ultra-rapide (3G inclus)</li>
+                            <li>Expérience tactile optimisée</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="feature-block feature-block--reverse">
+                    <div class="feature-block__visual" aria-hidden="true">
+                        <div class="feature-preview feature-preview--seo">
+                            <div class="seo-card">
+                                <div class="seo-card__icon">🔍</div>
+                                <div class="seo-card__content">
+                                    <div class="seo-card__query">plombier paris 15ème</div>
+                                    <div class="seo-result">
+                                        <span class="seo-result__pos">1</span>
+                                        <div>
+                                            <div class="seo-result__title">Votre Entreprise — Expert plombier</div>
+                                            <div class="seo-result__url">monentreprise.fr</div>
+                                        </div>
+                                    </div>
+                                    <div class="seo-result dimmed">
+                                        <span class="seo-result__pos">2</span>
+                                        <div>
+                                            <div class="seo-result__title">Concurrent...</div>
+                                            <div class="seo-result__url">concurrent.fr</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-block__content">
+                        <span class="feature-label">SEO Local</span>
+                        <h3 class="feature-title">Soyez trouvé en premier sur Google</h3>
+                        <p class="feature-desc">Nous optimisons chaque page pour votre secteur et votre ville. Balises,
+                            vitesse, structure — tout est paramétré pour maximiser votre visibilité locale.</p>
+                        <ul class="feature-checklist">
+                            <li>Optimisation Google My Business</li>
+                            <li>Balises meta et structured data</li>
+                            <li>Rapport de position mensuel</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+        <section class="section section--pearl" aria-labelledby="testimonials-heading">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">Témoignages</span>
+                    <h2 class="section__title" id="testimonials-heading">Ce que disent<br>nos clients</h2>
+                </div>
+                <div class="testimonials-grid">
+                    <article class="testimonial-card">
+                        <div class="stars" aria-label="5 étoiles sur 5" role="img">★★★★★</div>
+                        <blockquote class="testimonial-quote">
+                            "En 48h j'avais un site qui me ressemble vraiment. Depuis, je reçois des appels de nouveaux
+                            clients chaque semaine. Le retour sur investissement est immédiat."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar" aria-hidden="true">M</div>
+                            <div>
+                                <div class="testimonial-name">Marie Dupont</div>
+                                <div class="testimonial-role">Boulangerie Dupont, Paris 11e</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card testimonial-card--featured">
+                        <div class="stars" aria-label="5 étoiles sur 5" role="img">★★★★★</div>
+                        <blockquote class="testimonial-quote">
+                            "Simple, rapide, professionnel. J'avais peur que ce soit compliqué, mais le brief en ligne
+                            m'a pris 10 minutes. Le résultat dépasse mes attentes."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar" aria-hidden="true" style="background:#3C4257">S</div>
+                            <div>
+                                <div class="testimonial-name">Sébastien Moreau</div>
+                                <div class="testimonial-role">Plomberie Moreau, Lyon</div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <div class="stars" aria-label="5 étoiles sur 5" role="img">★★★★★</div>
+                        <blockquote class="testimonial-quote">
+                            "Mon salon avait besoin d'une présence en ligne. Maintenant je reçois des réservations
+                            directement via le site. C'est exactement ce dont j'avais besoin."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar" aria-hidden="true" style="background:#B45309">A</div>
+                            <div>
+                                <div class="testimonial-name">Amina Khelifi</div>
+                                <div class="testimonial-role">Salon Amina, Marseille</div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ STATS ═══════════════════════════ -->
+        <section class="stats-section" aria-label="Nos chiffres clés">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat" role="img" aria-label="Plus de 200 sites livrés">
+                        <div class="stat__value" data-target="200">0</div>
+                        <div class="stat__suffix">+</div>
+                        <div class="stat__label">Sites livrés</div>
+                    </div>
+                    <div class="stat" role="img" aria-label="48 heures de délai moyen">
+                        <div class="stat__value" data-target="48">0</div>
+                        <div class="stat__suffix">h</div>
+                        <div class="stat__label">Délai moyen</div>
+                    </div>
+                    <div class="stat" role="img" aria-label="98% de clients satisfaits">
+                        <div class="stat__value" data-target="98">0</div>
+                        <div class="stat__suffix">%</div>
+                        <div class="stat__label">Clients satisfaits</div>
+                    </div>
+                    <div class="stat" role="img" aria-label="Score moyen de performance 97">
+                        <div class="stat__value" data-target="97">0</div>
+                        <div class="stat__suffix">/100</div>
+                        <div class="stat__label">Score performance</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ PRICING ═══════════════════════════ -->
+        <section class="section" id="pricing" aria-labelledby="pricing-heading">
+            <div class="container">
+                <div class="section__header">
+                    <span class="section__eyebrow">Tarifs</span>
+                    <h2 class="section__title" id="pricing-heading">Des prix clairs,<br>sans surprise</h2>
+                    <p class="section__subtitle">Tous nos forfaits incluent l'hébergement, le nom de domaine et le SSL
+                        la première année.</p>
+                </div>
+                <div class="pricing-grid">
+                    <article class="pricing-card">
+                        <div class="pricing-card__header">
+                            <h3 class="pricing-plan">Essentiel</h3>
+                            <div class="pricing-price">
+                                <span class="pricing-amount">490</span>
+                                <span class="pricing-currency">€</span>
+                            </div>
+                            <p class="pricing-billing">Paiement unique · Livraison 48h</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><span class="check" aria-hidden="true">✓</span> 1 page (landing page)</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Design sur-mesure</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Mobile responsive</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Formulaire de contact</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Hébergement 1 an</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Nom de domaine 1 an</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline btn-full">Commencer</a>
+                    </article>
+                    <article class="pricing-card pricing-card--featured" aria-label="Offre recommandée">
+                        <div class="pricing-card__badge">Le plus populaire</div>
+                        <div class="pricing-card__header">
+                            <h3 class="pricing-plan">Professionnel</h3>
+                            <div class="pricing-price">
+                                <span class="pricing-amount">890</span>
+                                <span class="pricing-currency">€</span>
+                            </div>
+                            <p class="pricing-billing">Paiement unique · Livraison 48h</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><span class="check" aria-hidden="true">✓</span> Jusqu'à 5 pages</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Design premium</li>
+                            <li><span class="check" aria-hidden="true">✓</span> SEO optimisé</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Google My Business</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Blog intégré</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Google Analytics</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Support 3 mois</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary btn-full">Commencer</a>
+                    </article>
+                    <article class="pricing-card">
+                        <div class="pricing-card__header">
+                            <h3 class="pricing-plan">E-commerce</h3>
+                            <div class="pricing-price">
+                                <span class="pricing-amount">1 490</span>
+                                <span class="pricing-currency">€</span>
+                            </div>
+                            <p class="pricing-billing">Paiement unique · Livraison 5 jours</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><span class="check" aria-hidden="true">✓</span> Boutique en ligne complète</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Paiement CB / PayPal</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Gestion des stocks</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Tableau de bord</li>
+                            <li><span class="check" aria-hidden="true">✓</span> SEO e-commerce</li>
+                            <li><span class="check" aria-hidden="true">✓</span> Support 6 mois</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-outline btn-full">Commencer</a>
+                    </article>
+                </div>
+                <p class="pricing-note">Besoin d'un devis personnalisé ? <a href="#contact">Parlez-nous de votre projet
+                        →</a></p>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ FAQ ═══════════════════════════ -->
+        <section class="section section--pearl" id="faq" aria-labelledby="faq-heading">
+            <div class="container container--narrow">
+                <div class="section__header">
+                    <span class="section__eyebrow">FAQ</span>
+                    <h2 class="section__title" id="faq-heading">Questions fréquentes</h2>
+                </div>
+                <div class="faq-list" role="list">
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" id="faq-q1" aria-controls="faq-a1">
+                            <span>Vraiment 48h ? Comment est-ce possible ?</span>
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
+                            <p>Oui, 48h ouvrées à partir de la validation de votre brief. Notre équipe est spécialisée
+                                dans les sites pour entreprises locales — nous avons des processus rodés qui nous
+                                permettent d'aller vite sans sacrifier la qualité.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" id="faq-q2" aria-controls="faq-a2">
+                            <span>Suis-je propriétaire de mon site ?</span>
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+                            <p>100% oui. Dès la livraison, vous êtes propriétaire du code, du domaine et de tout le
+                                contenu. Nous vous transférons tous les accès. Vous n'êtes jamais dépendant de nous.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" id="faq-q3" aria-controls="faq-a3">
+                            <span>Je ne suis pas à l'aise avec la technologie. Est-ce un problème ?</span>
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+                            <p>Pas du tout. Nous gérons tout l'aspect technique. Vous n'avez qu'à remplir un formulaire
+                                simple (texte + photos). Nous nous chargeons du reste. Après livraison, vous pouvez
+                                modifier votre contenu sans aucune connaissance technique.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" id="faq-q4" aria-controls="faq-a4">
+                            <span>Et après la livraison, que se passe-t-il ?</span>
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+                            <p>L'hébergement et le domaine sont inclus la première année. Ensuite, vous pouvez
+                                renouveler (~120€/an avec nous ou migrer ailleurs). La maintenance (mises à jour,
+                                sécurité) est optionnelle à 29€/mois.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" role="listitem">
+                        <button class="faq-question" aria-expanded="false" id="faq-q5" aria-controls="faq-a5">
+                            <span>Combien de retouches puis-je demander ?</span>
+                            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                        </button>
+                        <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+                            <p>Les retouches sont illimitées durant les 14 jours suivant la première livraison.
+                                Couleurs, textes, photos, ordre des sections — tout peut être ajusté. On n'est
+                                satisfaits que quand vous l'êtes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════ CTA FINAL ═══════════════════════════ -->
+        <section class="cta-section" id="contact" aria-labelledby="cta-heading">
+            <div class="cta-section__bg" aria-hidden="true"></div>
+            <div class="container">
+                <div class="cta-inner">
+                    <h2 class="cta-title" id="cta-heading">Prêt à lancer<br><em>votre présence en ligne ?</em></h2>
+                    <p class="cta-subtitle">Devis gratuit en moins de 24h. Sans engagement, sans prise de tête.</p>
+                    <form class="cta-form" id="contactForm" novalidate aria-label="Formulaire de contact">
+                        <div class="cta-form__row">
+                            <div class="field-wrapper">
+                                <label for="fname" class="field-label">Prénom</label>
+                                <input type="text" id="fname" name="fname" class="field-input" placeholder="Marie"
+                                    required autocomplete="given-name">
+                            </div>
+                            <div class="field-wrapper">
+                                <label for="phone" class="field-label">Téléphone</label>
+                                <input type="tel" id="phone" name="phone" class="field-input"
+                                    placeholder="06 12 34 56 78" autocomplete="tel">
+                            </div>
+                        </div>
+                        <div class="field-wrapper">
+                            <label for="email" class="field-label">Email <span aria-label="obligatoire">*</span></label>
+                            <input type="email" id="email" name="email" class="field-input"
+                                placeholder="marie@monentreprise.fr" required autocomplete="email" aria-required="true">
+                        </div>
+                        <div class="field-wrapper">
+                            <label for="business" class="field-label">Votre activité</label>
+                            <input type="text" id="business" name="business" class="field-input"
+                                placeholder="Boulangerie, plombier, coiffeur…">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-full" id="submitBtn">
+                            <span id="submitText">Demander mon devis gratuit</span>
+                        </button>
+                        <p class="cta-form__privacy">🔒 Vos données ne sont jamais revendues. Consulter notre <a
+                                href="#">politique de confidentialité</a>.</p>
+                    </form>
+                    <div class="cta-success" id="ctaSuccess" hidden>
+                        <div class="cta-success__icon" aria-hidden="true">✓</div>
+                        <h3>Demande envoyée !</h3>
+                        <p>Nous vous répondons dans les 24h. Gardez un œil sur votre boîte mail.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__brand">
+                    <a href="#" class="header__logo" aria-label="Créer Ton Site">
+                        <div class="logo-mark">
+                            <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+                                <rect width="28" height="28" rx="8" fill="#C9A96E" />
+                                <path d="M7 14h14M14 7v14" stroke="#0D0D0D" stroke-width="2.5" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <span class="logo-text" style="font-size:16px">créer<span
+                                class="logo-accent">ton</span>site</span>
+                    </a>
+                    <p class="footer__tagline">Sites web professionnels pour les petites entreprises françaises.</p>
+                    <div class="footer__social">
+                        <a href="#" aria-label="Facebook" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" aria-hidden="true">
+                                <rect x="2" y="2" width="20" height="20" rx="5" />
+                                <circle cx="12" cy="12" r="5" />
+                                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn" class="social-link">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                                <circle cx="4" cy="4" r="2" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <nav class="footer__nav" aria-label="Navigation du pied de page">
+                    <div class="footer__col">
+                        <h4 class="footer__col-title">Services</h4>
+                        <a href="#" class="footer__link">Site vitrine</a>
+                        <a href="#" class="footer__link">Site e-commerce</a>
+                        <a href="#" class="footer__link">Blog professionnel</a>
+                        <a href="#" class="footer__link">SEO local</a>
+                        <a href="#" class="footer__link">Maintenance</a>
+                    </div>
+                    <div class="footer__col">
+                        <h4 class="footer__col-title">Entreprise</h4>
+                        <a href="#" class="footer__link">À propos</a>
+                        <a href="#" class="footer__link">Notre équipe</a>
+                        <a href="#" class="footer__link">Réalisations</a>
+                        <a href="#" class="footer__link">Blog</a>
+                    </div>
+                    <div class="footer__col">
+                        <h4 class="footer__col-title">Contact</h4>
+                        <a href="mailto:bonjour@creer-ton-site.fr" class="footer__link">bonjour@creer-ton-site.fr</a>
+                        <a href="tel:+33123456789" class="footer__link">+33 1 23 45 67 89</a>
+                        <span class="footer__link">Lun–Ven · 9h–18h</span>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copy">© 2026 creer-ton-site.fr — Tous droits réservés.</p>
+                <div class="footer__legal">
+                    <a href="#" class="footer__link">Mentions légales</a>
+                    <a href="#" class="footer__link">Confidentialité</a>
+                    <a href="#" class="footer__link">CGV</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>
