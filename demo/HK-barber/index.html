@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Apple Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>HK Barber - Paris</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Premium Header -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-scissors"></i>
+                HK Barber
+            </a>
+
+            <nav class="nav-desktop">
+                <a href="#services" class="nav__link">Services</a>
+                <a href="#gallery" class="nav__link">Galerie</a>
+                <a href="#about" class="nav__link">À Propos</a>
+                <a href="#booking" class="btn btn--primary"
+                    style="height: 40px; padding: 0 16px; font-size: 15px;">Réserver</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero__bg"></div>
+            <div class="container hero__content reveal">
+                <h1 class="hero__title mb-16">L'Excellence du <br><span class="color-gold">Grooming</span>.</h1>
+                <p class="hero__subtitle mb-32">Un savoir-faire de maître barbier dans un cadre épuré. Prenez soin de
+                    vous avec l'expérience HK Barber.</p>
+                <div class="hero__actions">
+                    <a href="#booking" class="btn btn--primary">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        Prendre RDV
+                    </a>
+                    <a href="#services" class="btn btn--tonal">
+                        Voir les Tarifs
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services (Cards) -->
+        <section class="section" id="services">
+            <div class="container">
+                <div class="text-center mb-64">
+                    <p class="text-caption color-gold"
+                        style="text-transform: uppercase; font-weight: 600; letter-spacing: 1px;">Prestations</p>
+                    <h2 class="text-large-title">Coupe & Barbe</h2>
+                </div>
+
+                <div class="grid-12">
+                    <!-- Service Card 1 -->
+                    <div class="card reveal" style="grid-column: span 4;">
+                        <div class="card__icon"><i class="fa-solid fa-scissors"></i></div>
+                        <h3 class="text-title-3 mb-8">Coupe Classique</h3>
+                        <p class="text-body">Shampoing, coupe sur mesure (ciseaux ou tondeuse) et coiffage.</p>
+                        <div class="card__price">
+                            <span class="text-title-2 color-gold">25€</span>
+                            <span class="text-subhead color-snow" style="opacity: 0.5;">30 min</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="card reveal delay-1" style="grid-column: span 4;">
+                        <div class="card__icon"><i class="fa-solid fa-razor"></i></div>
+                        <h3 class="text-title-3 mb-8">Taille de Barbe</h3>
+                        <p class="text-body">Taille millimétrée, contours au coupe-choux, serviette chaude.</p>
+                        <div class="card__price">
+                            <span class="text-title-2 color-gold">20€</span>
+                            <span class="text-subhead color-snow" style="opacity: 0.5;">20 min</span>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="card reveal delay-2" style="grid-column: span 4;">
+                        <div class="card__icon"><i class="fa-solid fa-crown"></i></div>
+                        <h3 class="text-title-3 mb-8">Forfait Premium</h3>
+                        <p class="text-body">Coupe complète + Taille de barbe traditionnelle + Soin express.</p>
+                        <div class="card__price">
+                            <span class="text-title-2 color-gold">40€</span>
+                            <span class="text-subhead color-snow" style="opacity: 0.5;">1 heure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- iOS Settings Style Info -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="grid-12" style="align-items: center;">
+                    <div class="reveal" style="grid-column: 1 / -1;">
+                        <p class="text-caption color-gold text-center mb-16"
+                            style="text-transform: uppercase; font-weight: 600; letter-spacing: 1px;">Infos Pratiques
+                        </p>
+                        <h2 class="text-large-title text-center mb-32">Nous Trouver</h2>
+                    </div>
+
+                    <div class="reveal" style="grid-column: span 4; margin: 0 auto; width: 100%; max-width: 500px;">
+                        <!-- iOS Grouped List -->
+                        <div class="inset-list">
+                            <div class="inset-list__item">
+                                <i class="fa-solid fa-location-dot inset-list__icon"></i>
+                                <div class="inset-list__content">
+                                    <p class="text-body color-snow" style="font-weight: 500;">Adresse</p>
+                                    <p class="text-subhead">15 Rue du Faubourg, 75000 Paris</p>
+                                </div>
+                            </div>
+
+                            <a href="tel:0123456789" class="inset-list__item" style="text-decoration: none;">
+                                <i class="fa-solid fa-phone inset-list__icon" style="color: var(--c-success);"></i>
+                                <div class="inset-list__content">
+                                    <p class="text-body color-snow" style="font-weight: 500;">Téléphone</p>
+                                    <p class="text-subhead">01 23 45 67 89</p>
+                                </div>
+                                <i class="fa-solid fa-chevron-right"
+                                    style="color: rgba(255,255,255,0.2); font-size: 14px;"></i>
+                            </a>
+                        </div>
+
+                        <div class="inset-list mt-32">
+                            <div class="inset-list__item">
+                                <i class="fa-regular fa-clock inset-list__icon"></i>
+                                <div class="inset-list__content">
+                                    <p class="text-body color-snow mb-8" style="font-weight: 500;">Horaires</p>
+                                    <div style="display: flex; justify-content: space-between;" class="mb-8">
+                                        <span class="text-subhead">Lun - Ven</span>
+                                        <span class="text-subhead color-snow">09:00 - 19:30</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between;" class="mb-8">
+                                        <span class="text-subhead">Samedi</span>
+                                        <span class="text-subhead color-snow">09:00 - 18:00</span>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <span class="text-subhead">Dimanche</span>
+                                        <span class="text-subhead" style="color: var(--c-crimson);">Fermé</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" id="booking">
+            <div class="container relative">
+                <div class="card reveal text-center" style="background-color: var(--c-charcoal-light);">
+                    <i class="fa-solid fa-calendar-check color-gold mb-16" style="font-size: 48px;"></i>
+                    <h2 class="text-title-1 mb-16">Prêt pour un rafraîchissement ?</h2>
+                    <p class="text-body mb-32" style="max-width: 500px; margin-left: auto; margin-right: auto;">Réservez
+                        votre créneau en ligne 24/7. Simple et rapide avec confirmation immédiate via Apple Pay.</p>
+                    <button class="btn btn--primary" style="margin: 0 auto; width: 100%; max-width: 300px;">
+                        Réserver un créneau
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Mobile App Tab Bar -->
+    <nav class="tab-bar">
+        <a href="#home" class="tab-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>Accueil</span>
+        </a>
+        <a href="#services" class="tab-item">
+            <i class="fa-solid fa-scissors"></i>
+            <span>Services</span>
+        </a>
+        <a href="#booking" class="tab-item">
+            <i class="fa-regular fa-calendar-plus"></i>
+            <span>Réserver</span>
+        </a>
+        <a href="#about" class="tab-item">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Contact</span>
+        </a>
+    </nav>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
