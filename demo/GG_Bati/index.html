@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GG Bati — Rénovation & Aménagement à Fontenay-sous-Bois</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   GG BATI — DESIGN SYSTEM
+   Principal Designer: Apple HIG-Inspired
+   ============================================================ */
+
+/* ─── DESIGN TOKENS ─────────────────────────────────────── */
+:root {
+  /* Color Palette */
+  --color-obsidian:    #0A0A08;   /* primary bg */
+  --color-charcoal:   #141412;   /* surface */
+  --color-graphite:   #1E1E1B;   /* card bg */
+  --color-iron:       #2C2C28;   /* border */
+  --color-stone:      #B8A98A;   /* accent warm */
+  --color-gold:       #C8A96E;   /* primary accent */
+  --color-cream:      #F5F0E8;   /* light text */
+  --color-mist:       #8A8880;   /* muted text */
+  --color-white:      #FFFFFF;
+  --color-success:    #4A7C59;
+  --color-warning:    #C4872A;
+  --color-error:      #8B3A3A;
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-headline: 'Playfair Display', serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  /* Type Scale */
+  --text-display:     clamp(3.5rem, 8vw, 7.5rem);
+  --text-hero:        clamp(2.5rem, 5vw, 5rem);
+  --text-h1:          clamp(2rem, 3.5vw, 3.5rem);
+  --text-h2:          clamp(1.5rem, 2.5vw, 2.5rem);
+  --text-h3:          clamp(1.1rem, 1.5vw, 1.4rem);
+  --text-body-lg:     1.125rem;
+  --text-body:        1rem;
+  --text-caption:     0.8125rem;
+  --text-label:       0.6875rem;
+
+  /* Spacing (8px base) */
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-6:   24px;
+  --sp-8:   32px;
+  --sp-12:  48px;
+  --sp-16:  64px;
+  --sp-24:  96px;
+  --sp-32:  128px;
+
+  /* Layout */
+  --max-w: 1440px;
+  --gutter: clamp(24px, 5vw, 96px);
+
+  /* Motion */
+  --ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:    cubic-bezier(0.7, 0, 0.84, 0);
+  --dur-fast:   0.2s;
+  --dur-med:    0.5s;
+  --dur-slow:   0.9s;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 60px rgba(200,169,110,0.08);
+}
+
+/* ─── RESET & BASE ─────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--color-obsidian);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: auto;
+}
+a { color: inherit; text-decoration: none; cursor: pointer; }
+img { display: block; width: 100%; object-fit: cover; }
+ul { list-style: none; }
+button { border: none; background: none; cursor: pointer; font: inherit; }
+
+/* ─── CUSTOM CURSOR ─── (disabled — using default browser cursor) ── */
+
+/* ─── NOISE OVERLAY ─────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9990;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+}
+
+/* ─── HORIZONTAL LINE UTILITY ───────────────────────────── */
+.rule { width: 100%; height: 1px; background: var(--color-iron); }
+.rule--gold { background: linear-gradient(90deg, transparent, var(--color-gold), transparent); }
+
+/* ─── NAVIGATION ─────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: var(--sp-6) var(--gutter);
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background var(--dur-med), backdrop-filter var(--dur-med);
+}
+nav.scrolled {
+  background: rgba(10,10,8,0.85);
+  backdrop-filter: blur(20px) saturate(150%);
+  border-bottom: 1px solid var(--color-iron);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-cream);
+}
+.nav-logo span { color: var(--color-gold); }
+.nav-links {
+  display: flex; gap: var(--sp-8); align-items: center;
+}
+.nav-links a {
+  font-size: var(--text-caption);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  transition: color var(--dur-fast);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 100%;
+  height: 1px; background: var(--color-gold);
+  transition: right var(--dur-med) var(--ease-out);
+}
+.nav-links a:hover { color: var(--color-cream); }
+.nav-links a:hover::after { right: 0; }
+.nav-cta {
+  padding: 10px 24px;
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold) !important;
+  border-radius: 2px;
+  font-size: var(--text-caption) !important;
+  letter-spacing: 0.14em !important;
+  transition: background var(--dur-fast), color var(--dur-fast) !important;
+}
+.nav-cta:hover { background: var(--color-gold); color: var(--color-obsidian) !important; }
+.nav-cta::after { display: none !important; }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 4px; }
+.nav-hamburger span { display: block; width: 24px; height: 1px; background: var(--color-cream); transition: all 0.3s; }
+
+/* ─── HERO ───────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(10,10,8,0.3) 0%, rgba(10,10,8,0.6) 50%, rgba(10,10,8,0.95) 100%),
+    url('https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1920&q=80') center/cover no-repeat;
+  transform: scale(1.05);
+  transition: transform 8s var(--ease-out);
+}
+.hero-bg.loaded { transform: scale(1); }
+.hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: var(--sp-32) var(--gutter) var(--sp-24);
+  max-width: var(--max-w); margin: 0 auto; width: 100%;
+}
+.hero-label {
+  font-size: var(--text-label);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--sp-4);
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s var(--ease-out) 0.3s forwards;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  margin-bottom: var(--sp-6);
+  opacity: 0; transform: translateY(30px);
+  animation: fadeUp 1s var(--ease-out) 0.5s forwards;
+}
+.hero-title em { font-style: italic; color: var(--color-gold); }
+.hero-subtitle {
+  font-size: var(--text-body-lg);
+  font-weight: 300;
+  color: var(--color-mist);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: var(--sp-12);
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s var(--ease-out) 0.8s forwards;
+}
+.hero-actions {
+  display: flex; gap: var(--sp-4); flex-wrap: wrap;
+  opacity: 0; transform: translateY(20px);
+  animation: fadeUp 0.8s var(--ease-out) 1s forwards;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  padding: 16px 36px;
+  background: var(--color-gold);
+  color: var(--color-obsidian);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background var(--dur-fast), transform var(--dur-fast);
+}
+.btn-primary:hover { background: var(--color-stone); transform: translateY(-1px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  padding: 15px 36px;
+  border: 1px solid rgba(245,240,232,0.2);
+  color: var(--color-cream);
+  font-size: var(--text-caption);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.btn-ghost:hover { border-color: var(--color-gold); background: rgba(200,169,110,0.06); }
+.hero-scroll {
+  position: absolute; bottom: var(--sp-8); left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: var(--sp-2);
+  opacity: 0; animation: fadeIn 1s 1.5s forwards;
+}
+.hero-scroll span {
+  font-size: var(--text-label); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-mist);
+}
+.scroll-line {
+  width: 1px; height: 48px; background: var(--color-iron);
+  position: relative; overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute; top: -100%; left: 0; right: 0; bottom: 100%;
+  background: var(--color-gold);
+  animation: scrollDown 1.5s ease 2s infinite;
+}
+
+/* ─── STATS BAR ──────────────────────────────────────────── */
+.stats-bar {
+  background: var(--color-graphite);
+  border-top: 1px solid var(--color-iron);
+  border-bottom: 1px solid var(--color-iron);
+}
+.stats-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--sp-8) var(--gutter);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--color-iron);
+}
+.stat-item {
+  background: var(--color-graphite);
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+}
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 600;
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: var(--sp-2);
+}
+.stat-label {
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+}
+
+/* ─── SECTION SHARED ─────────────────────────────────────── */
+section { padding: var(--sp-32) var(--gutter); }
+.section-inner { max-width: var(--max-w); margin: 0 auto; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  font-size: var(--text-label); letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--color-gold); margin-bottom: var(--sp-6);
+}
+.section-tag::before {
+  content: ''; width: 32px; height: 1px; background: var(--color-gold);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-6);
+}
+.section-title em { font-style: italic; color: var(--color-gold); }
+.section-desc {
+  font-size: var(--text-body-lg);
+  font-weight: 300;
+  color: var(--color-mist);
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+/* ─── ABOUT ──────────────────────────────────────────────── */
+.about { background: var(--color-charcoal); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-24);
+  align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+.about-image-wrap img {
+  height: 100%;
+  transition: transform 0.8s var(--ease-out);
+}
+.about-image-wrap:hover img { transform: scale(1.04); }
+.about-image-accent {
+  position: absolute; bottom: var(--sp-8); right: -var(--sp-8);
+  width: 160px; aspect-ratio: 1;
+  background: var(--color-graphite);
+  border: 1px solid var(--color-iron);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  transform: translateX(24px);
+}
+.about-image-accent .num {
+  font-family: var(--font-display);
+  font-size: 3rem; font-weight: 600; color: var(--color-gold); line-height: 1;
+}
+.about-image-accent .lbl {
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--color-mist); text-align: center; padding: 0 8px; margin-top: 4px;
+}
+.about-content { padding-left: var(--sp-8); }
+.about-values {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4); margin-top: var(--sp-12);
+}
+.value-item {
+  padding: var(--sp-6);
+  border: 1px solid var(--color-iron);
+  border-radius: 2px;
+  transition: border-color var(--dur-med), background var(--dur-med);
+}
+.value-item:hover { border-color: var(--color-gold); background: rgba(200,169,110,0.04); }
+.value-icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--color-gold);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: var(--sp-3);
+  font-size: 1rem;
+}
+.value-item h4 {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-2);
+}
+.value-item p { font-size: var(--text-caption); color: var(--color-mist); line-height: 1.6; }
+
+/* ─── SERVICES ───────────────────────────────────────────── */
+.services { background: var(--color-obsidian); }
+.services-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: var(--sp-16);
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--color-iron);
+  border: 1px solid var(--color-iron);
+}
+.service-card {
+  background: var(--color-charcoal);
+  padding: var(--sp-12) var(--sp-8);
+  position: relative;
+  overflow: hidden;
+  transition: background var(--dur-med);
+}
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+.service-card:hover { background: var(--color-graphite); }
+.service-card:hover::before { transform: scaleX(1); }
+.service-number {
+  font-family: var(--font-display);
+  font-size: 4rem; font-weight: 300;
+  color: var(--color-iron);
+  line-height: 1;
+  margin-bottom: var(--sp-8);
+  transition: color var(--dur-med);
+}
+.service-card:hover .service-number { color: rgba(200,169,110,0.15); }
+.service-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--sp-4);
+  display: block;
+}
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-4);
+  line-height: 1.2;
+}
+.service-card p {
+  font-size: var(--text-caption);
+  color: var(--color-mist);
+  line-height: 1.7;
+  margin-bottom: var(--sp-6);
+}
+.service-link {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--text-label);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+.service-link span { transition: transform var(--dur-fast); }
+.service-card:hover .service-link span { transform: translateX(4px); }
+
+/* ─── PROJECTS ───────────────────────────────────────────── */
+.projects { background: var(--color-charcoal); }
+.projects-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-bottom: var(--sp-12);
+}
+.project-filters {
+  display: flex; gap: var(--sp-2); flex-wrap: wrap;
+  margin-bottom: var(--sp-12);
+}
+.filter-btn {
+  padding: 8px 20px;
+  border: 1px solid var(--color-iron);
+  border-radius: 2px;
+  font-size: var(--text-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  transition: all var(--dur-fast);
+}
+.filter-btn.active, .filter-btn:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  background: rgba(200,169,110,0.06);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: var(--sp-3);
+}
+.project-card {
+  position: relative; overflow: hidden;
+  background: var(--color-graphite);
+  cursor: none;
+}
+.project-card:nth-child(1) { grid-column: span 7; grid-row: span 2; aspect-ratio: 16/10; }
+.project-card:nth-child(2) { grid-column: span 5; aspect-ratio: 4/3; }
+.project-card:nth-child(3) { grid-column: span 5; aspect-ratio: 4/3; }
+.project-card:nth-child(4) { grid-column: span 4; aspect-ratio: 4/5; }
+.project-card:nth-child(5) { grid-column: span 4; aspect-ratio: 4/5; }
+.project-card:nth-child(6) { grid-column: span 4; aspect-ratio: 4/5; }
+.project-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out), filter 0.5s;
+  filter: brightness(0.85) saturate(0.8);
+}
+.project-card:hover img { transform: scale(1.06); filter: brightness(0.7) saturate(0.6); }
+.project-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,10,8,0.9) 0%, transparent 60%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: var(--sp-8);
+  opacity: 1;
+}
+.project-tag {
+  font-size: var(--text-label);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: var(--sp-2);
+}
+.project-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+.project-meta {
+  margin-top: var(--sp-2);
+  font-size: var(--text-label);
+  color: var(--color-mist);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--dur-med), transform var(--dur-med);
+}
+.project-card:hover .project-meta { opacity: 1; transform: none; }
+
+/* ─── PROCESS ────────────────────────────────────────────── */
+.process { background: var(--color-obsidian); }
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  margin-top: var(--sp-16);
+}
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 28px; left: 0; right: 0;
+  height: 1px;
+  background: var(--color-iron);
+}
+.process-step {
+  padding: var(--sp-4);
+  position: relative;
+}
+.step-num {
+  width: 56px; height: 56px;
+  border: 1px solid var(--color-iron);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-gold);
+  background: var(--color-obsidian);
+  margin-bottom: var(--sp-8);
+  position: relative; z-index: 1;
+  transition: border-color var(--dur-med), background var(--dur-med);
+}
+.process-step:hover .step-num {
+  background: var(--color-gold);
+  color: var(--color-obsidian);
+  border-color: var(--color-gold);
+}
+.process-step h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 400;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-3);
+}
+.process-step p { font-size: var(--text-caption); color: var(--color-mist); line-height: 1.7; }
+
+/* ─── TESTIMONIALS ───────────────────────────────────────── */
+.testimonials {
+  background: var(--color-charcoal);
+  overflow: hidden;
+}
+.testimonials-track {
+  display: flex; gap: var(--sp-6);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.testimonial-card {
+  flex-shrink: 0;
+  width: calc(33.333% - var(--sp-4));
+  background: var(--color-graphite);
+  border: 1px solid var(--color-iron);
+  padding: var(--sp-12) var(--sp-8);
+  position: relative;
+}
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute; top: var(--sp-6); left: var(--sp-8);
+  font-family: var(--font-display);
+  font-size: 5rem; line-height: 1;
+  color: var(--color-iron);
+  font-weight: 700;
+}
+.testimonial-text {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-8);
+  padding-top: var(--sp-8);
+}
+.testimonial-author {
+  display: flex; align-items: center; gap: var(--sp-4);
+  border-top: 1px solid var(--color-iron);
+  padding-top: var(--sp-6);
+}
+.author-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--color-iron);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.author-name {
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--color-cream);
+}
+.author-role { font-size: var(--text-caption); color: var(--color-mist); margin-top: 2px; }
+.stars {
+  display: flex; gap: 2px; margin-bottom: var(--sp-4);
+  color: var(--color-gold); font-size: 0.75rem;
+}
+.testimonials-nav {
+  display: flex; gap: var(--sp-3); margin-top: var(--sp-12);
+}
+.tnav-btn {
+  width: 44px; height: 44px;
+  border: 1px solid var(--color-iron);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-mist);
+  font-size: 1.2rem;
+  transition: all var(--dur-fast);
+  border-radius: 2px;
+}
+.tnav-btn:hover { border-color: var(--color-gold); color: var(--color-gold); background: rgba(200,169,110,0.06); }
+
+/* ─── TEAM ───────────────────────────────────────────────── */
+.team { background: var(--color-obsidian); }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+  margin-top: var(--sp-16);
+}
+.team-card {
+  position: relative; overflow: hidden;
+}
+.team-photo {
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  margin-bottom: var(--sp-4);
+  background: var(--color-graphite);
+  position: relative;
+}
+.team-photo img {
+  height: 100%;
+  filter: grayscale(30%);
+  transition: transform 0.7s var(--ease-out), filter 0.5s;
+}
+.team-card:hover .team-photo img { transform: scale(1.05); filter: grayscale(0%); }
+.team-photo-overlay {
+  position: absolute; inset: 0;
+  background: rgba(10,10,8,0);
+  display: flex; align-items: flex-end;
+  padding: var(--sp-6);
+  transition: background var(--dur-med);
+}
+.team-card:hover .team-photo-overlay { background: rgba(10,10,8,0.5); }
+.team-socials {
+  display: flex; gap: var(--sp-2);
+  opacity: 0; transform: translateY(8px);
+  transition: opacity var(--dur-med), transform var(--dur-med);
+}
+.team-card:hover .team-socials { opacity: 1; transform: none; }
+.team-social {
+  width: 32px; height: 32px;
+  background: rgba(200,169,110,0.9);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; color: var(--color-obsidian);
+  border-radius: 2px;
+}
+.team-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem; font-weight: 400;
+  color: var(--color-cream);
+}
+.team-role {
+  font-size: var(--text-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-top: 2px;
+}
+
+/* ─── PARTNERS ───────────────────────────────────────────── */
+.partners {
+  background: var(--color-charcoal);
+  padding: var(--sp-16) var(--gutter);
+}
+.partners-inner { max-width: var(--max-w); margin: 0 auto; }
+.partners h3 {
+  font-size: var(--text-caption);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  text-align: center;
+  margin-bottom: var(--sp-12);
+}
+.partners-logos {
+  display: flex; justify-content: center; align-items: center;
+  gap: var(--sp-12); flex-wrap: wrap;
+}
+.partner-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-iron);
+  transition: color var(--dur-fast);
+  text-transform: uppercase;
+}
+.partner-logo:hover { color: var(--color-mist); }
+
+/* ─── CONTACT ────────────────────────────────────────────── */
+.contact {
+  background: var(--color-obsidian);
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: 'CONTACT';
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: 18vw;
+  font-weight: 700;
+  color: rgba(255,255,255,0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 0.1em;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-24);
+  position: relative; z-index: 1;
+}
+.contact-info h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h1);
+  font-weight: 300;
+  color: var(--color-cream);
+  line-height: 1.1;
+  margin-bottom: var(--sp-6);
+}
+.contact-info h2 em { font-style: italic; color: var(--color-gold); }
+.contact-info p {
+  font-size: var(--text-body-lg);
+  font-weight: 300;
+  color: var(--color-mist);
+  line-height: 1.8;
+  margin-bottom: var(--sp-12);
+}
+.contact-details {
+  display: flex; flex-direction: column; gap: var(--sp-6);
+}
+.contact-item {
+  display: flex; gap: var(--sp-4); align-items: flex-start;
+}
+.contact-item-icon {
+  width: 40px; height: 40px;
+  border: 1px solid var(--color-iron);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-size: 1rem;
+  color: var(--color-gold);
+}
+.contact-item-label { font-size: var(--text-label); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-mist); margin-bottom: 2px; }
+.contact-item-value { font-size: var(--text-body); color: var(--color-cream); }
+
+/* ─── FORM ───────────────────────────────────────────────── */
+.contact-form {
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-iron);
+  padding: var(--sp-12);
+}
+.form-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem; font-weight: 400;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-8);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); }
+.form-group { margin-bottom: var(--sp-4); }
+.form-group label {
+  display: block;
+  font-size: var(--text-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  margin-bottom: var(--sp-2);
+}
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  background: var(--color-graphite);
+  border: 1px solid var(--color-iron);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 300;
+  padding: 14px 16px;
+  border-radius: 2px;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--color-gold);
+  background: rgba(200,169,110,0.04);
+}
+.form-group textarea { min-height: 120px; resize: vertical; }
+.form-group select option { background: var(--color-graphite); }
+.form-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--color-gold);
+  color: var(--color-obsidian);
+  font-family: var(--font-body);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: none;
+  transition: background var(--dur-fast), transform var(--dur-fast);
+  display: flex; align-items: center; justify-content: center; gap: var(--sp-3);
+}
+.form-submit:hover { background: var(--color-stone); transform: translateY(-1px); }
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer {
+  background: var(--color-charcoal);
+  border-top: 1px solid var(--color-iron);
+}
+.footer-main {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: var(--sp-24) var(--gutter) var(--sp-16);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--sp-12);
+}
+.footer-brand h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--color-cream);
+  letter-spacing: 0.08em;
+  margin-bottom: var(--sp-4);
+}
+.footer-brand h3 span { color: var(--color-gold); }
+.footer-brand p {
+  font-size: var(--text-caption);
+  color: var(--color-mist);
+  line-height: 1.8;
+  margin-bottom: var(--sp-8);
+  max-width: 280px;
+}
+.footer-socials {
+  display: flex; gap: var(--sp-3);
+}
+.footer-social {
+  width: 36px; height: 36px;
+  border: 1px solid var(--color-iron);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--color-mist); font-size: 0.8rem;
+  border-radius: 2px;
+  transition: all var(--dur-fast);
+}
+.footer-social:hover { border-color: var(--color-gold); color: var(--color-gold); }
+.footer-col h4 {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-6);
+}
+.footer-col ul { display: flex; flex-direction: column; gap: var(--sp-3); }
+.footer-col li a {
+  font-size: var(--text-caption);
+  color: var(--color-mist);
+  transition: color var(--dur-fast);
+}
+.footer-col li a:hover { color: var(--color-gold); }
+.footer-bottom {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: var(--sp-6) var(--gutter);
+  border-top: 1px solid var(--color-iron);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-bottom p {
+  font-size: var(--text-caption);
+  color: var(--color-mist);
+}
+.footer-bottom-links {
+  display: flex; gap: var(--sp-6);
+}
+.footer-bottom-links a {
+  font-size: var(--text-caption);
+  color: var(--color-mist);
+  transition: color var(--dur-fast);
+}
+.footer-bottom-links a:hover { color: var(--color-gold); }
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── MOBILE MENU ────────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(10,10,8,0.98);
+  backdrop-filter: blur(20px);
+  flex-direction: column; justify-content: center; align-items: center; gap: var(--sp-8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-med);
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 2.5rem; font-weight: 300;
+  color: var(--color-mist);
+  transition: color var(--dur-fast);
+}
+.mobile-menu a:hover { color: var(--color-gold); }
+
+/* ─── KEYFRAMES ──────────────────────────────────────────── */
+@keyframes fadeUp {
+  to { opacity: 1; transform: none; }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+@keyframes scrollDown {
+  0% { top: -100%; bottom: 100%; }
+  50% { top: 0%; bottom: 0%; }
+  100% { top: 100%; bottom: -100%; }
+}
+
+/* ─── TESTIMONIALS PLACEHOLDER ───────────────────────────── */
+.testimonials-placeholder { margin-top: var(--sp-16); }
+.tpl-slots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+  margin-top: var(--sp-8);
+}
+.tpl-slot {
+  background: var(--color-graphite);
+  border: 1px dashed var(--color-iron);
+  padding: var(--sp-6);
+  border-radius: 2px;
+  text-align: center;
+}
+.tpl-stars { color: var(--color-iron); font-size: 0.9rem; margin-bottom: var(--sp-3); }
+.tpl-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--color-iron);
+  line-height: 1.6;
+  margin-bottom: var(--sp-3);
+}
+.tpl-author { font-size: var(--text-caption); color: var(--color-iron); }
+
+/* ─── TEAM PLACEHOLDER ───────────────────────────────────── */
+.team-placeholder { margin-top: var(--sp-12); }
+.team-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-6);
+  margin-top: var(--sp-8);
+}
+.team-slot { text-align: center; }
+.team-slot-photo {
+  aspect-ratio: 3/4;
+  background: var(--color-graphite);
+  border: 1px dashed var(--color-iron);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+  margin-bottom: var(--sp-3);
+  opacity: 0.5;
+}
+.team-slot-name {
+  font-size: var(--text-caption);
+  color: var(--color-iron);
+  letter-spacing: 0.05em;
+}
+
+/* ─── CONTACT LINK ───────────────────────────────────────── */
+.contact-link {
+  display: block;
+  color: var(--color-cream);
+  transition: color var(--dur-fast);
+  text-decoration: none;
+}
+.contact-link:hover { color: var(--color-gold); }
+
+/* ─── MAP EMBED ──────────────────────────────────────────── */
+.map-embed { border: 1px solid var(--color-iron); overflow: hidden; border-radius: 2px; }
+
+/* ─── PROJECT PLACEHOLDER ────────────────────────────────── */
+.projects-placeholder {
+  margin-top: var(--sp-6);
+}
+.placeholder-inner {
+  text-align: center;
+  padding: var(--sp-16) var(--sp-8);
+  border: 2px dashed var(--color-iron);
+  border-radius: 4px;
+  margin-bottom: var(--sp-8);
+  background: rgba(200,169,110,0.03);
+}
+.placeholder-icon { font-size: 3rem; margin-bottom: var(--sp-4); display: block; }
+.placeholder-inner h3 {
+  font-family: var(--font-display);
+  font-size: 1.8rem; font-weight: 400;
+  color: var(--color-cream);
+  margin-bottom: var(--sp-3);
+}
+.placeholder-inner p {
+  font-size: var(--text-body);
+  color: var(--color-mist);
+  line-height: 1.7;
+}
+.placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+.placeholder-card {
+  aspect-ratio: 4/3;
+  border: 1px dashed var(--color-iron);
+  border-radius: 2px;
+  background: var(--color-graphite);
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.placeholder-card:hover { border-color: var(--color-gold); background: rgba(200,169,110,0.04); }
+.placeholder-img-area {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: var(--sp-2);
+}
+.placeholder-img-area span { font-size: 2rem; opacity: 0.3; }
+.placeholder-img-area p {
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-iron);
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-content { padding-left: 0; }
+  .about-image-wrap { aspect-ratio: 16/9; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-steps::before { display: none; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-main { grid-template-columns: 1fr 1fr; }
+  .project-card:nth-child(1) { grid-column: span 12; }
+  .project-card:nth-child(2), .project-card:nth-child(3) { grid-column: span 6; }
+  .project-card:nth-child(4), .project-card:nth-child(5), .project-card:nth-child(6) { grid-column: span 4; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  .hero-content { padding: var(--sp-32) var(--gutter) var(--sp-16); }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .services-grid { grid-template-columns: 1fr; }
+  .placeholder-grid { grid-template-columns: repeat(2, 1fr); }
+  .tpl-slots { grid-template-columns: 1fr; }
+  .team-slots { grid-template-columns: repeat(2, 1fr); }
+  .testimonial-card { width: 85vw; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-main { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: var(--sp-4); text-align: center; }
+  section { padding: var(--sp-24) var(--gutter); }
+  .services-header, .projects-header { flex-direction: column; align-items: flex-start; gap: var(--sp-4); }
+}
+@media (max-width: 480px) {
+  .about-values { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">GG <span>Bati</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Réalisations</a></li>
+    <li><a href="#process">Processus</a></li>
+    <li><a href="#team">Équipe</a></li>
+    <li><a href="#contact" class="nav-cta">Nous Contacter</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<nav class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">À Propos</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#projects" onclick="closeMobile()">Réalisations</a>
+  <a href="#process" onclick="closeMobile()">Processus</a>
+  <a href="#team" onclick="closeMobile()">Équipe</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-content">
+    <p class="hero-label">Fontenay-sous-Bois — Peinture & Rénovation intérieure depuis 2021</p>
+    <h1 class="hero-title">Votre appartement,<br><em>sublimé</em></h1>
+    <p class="hero-subtitle">GG Bati transforme vos espaces intérieurs avec savoir-faire et précision. Rénovation d'appartements, de parties communes et d'immeubles en Val-de-Marne.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">Voir nos Réalisations <span>→</span></a>
+      <a href="#contact" class="btn-ghost">Demander un Devis</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-number" data-count="4" data-suffix="+">0</div>
+      <div class="stat-label">Années d'Activité</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-number" data-count="94" data-suffix="">0</div>
+      <div class="stat-label">Val-de-Marne — Notre Territoire</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-number" data-count="100" data-suffix="%">0</div>
+      <div class="stat-label">Devis Gratuit & Sans Engagement</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-number" data-count="10" data-suffix="ans">0</div>
+      <div class="stat-label">Garantie Décennale</div>
+    </div>
+  </div>
+</div>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image-wrap reveal">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80" alt="Travaux de peinture GG Bati" loading="lazy">
+        <div class="about-image-accent">
+          <span class="num">2021</span>
+          <span class="lbl">Année de création</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="section-tag reveal">Créée en 2021 à Fontenay-sous-Bois</p>
+        <h2 class="section-title reveal">L'art de <em>sublimer</em><br>vos intérieurs</h2>
+        <p class="section-desc reveal">Créée en juin 2021 et implantée au 92 avenue Victor Hugo à Fontenay-sous-Bois, GG Bati est une SAS spécialisée dans les travaux de peinture, vitrerie et rénovation intérieure en Val-de-Marne. Nous intervenons chez les particuliers, les copropriétés et les gestionnaires d'immeubles.</p>
+        <p class="section-desc reveal reveal-delay-1" style="margin-top: 24px; max-width: 560px;">De la remise en peinture d'un appartement à la réfection complète des parties communes d'un immeuble, chaque chantier est réalisé avec soin, dans le respect de votre quotidien et de vos délais.</p>
+        <div class="about-values">
+          <div class="value-item reveal reveal-delay-1">
+            <div class="value-icon">◈</div>
+            <h4>Qualité</h4>
+            <p>Matériaux premium et finitions irréprochables sur chaque chantier.</p>
+          </div>
+          <div class="value-item reveal reveal-delay-2">
+            <div class="value-icon">◎</div>
+            <h4>Innovation</h4>
+            <p>Technologies de pointe et méthodes constructives modernes.</p>
+          </div>
+          <div class="value-item reveal reveal-delay-1">
+            <div class="value-icon">⬡</div>
+            <h4>Durabilité</h4>
+            <p>Construction éco-responsable pour les générations futures.</p>
+          </div>
+          <div class="value-item reveal reveal-delay-2">
+            <div class="value-icon">◇</div>
+            <h4>Fiabilité</h4>
+            <p>Respect des délais et des budgets, sans compromis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div>
+        <p class="section-tag reveal">Ce que nous faisons</p>
+        <h2 class="section-title reveal">Nos <em>spécialités</em></h2>
+      </div>
+      <a href="#contact" class="btn-ghost reveal" style="white-space:nowrap">Tous nos services →</a>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <span class="service-icon">🛋️</span>
+        <h3>Rénovation Complète d'Appartement</h3>
+        <p>Prise en charge intégrale de votre rénovation : démolition, cloisons, sol, plafond, électricité, plomberie et finitions. Clé en main, dans les délais convenus.</p>
+        <a href="#contact" class="service-link">Demander un devis <span>→</span></a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <span class="service-icon">🏢</span>
+        <h3>Parties Communes d'Immeuble</h3>
+        <p>Halls d'entrée, cages d'escalier, couloirs et sous-sols : nous réhabilitons les espaces collectifs pour valoriser votre immeuble et améliorer le cadre de vie des résidents.</p>
+        <a href="#contact" class="service-link">Demander un devis <span>→</span></a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <span class="service-icon">🔧</span>
+        <h3>Plomberie & Sanitaires</h3>
+        <p>Remplacement de colonnes, réfection de salles de bain et WC, installation de douches à l'italienne. Intervention rapide en urgence pour les syndics de copropriété.</p>
+        <a href="#contact" class="service-link">Demander un devis <span>→</span></a>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-number">04</div>
+        <span class="service-icon">⚡</span>
+        <h3>Électricité & Mise aux Normes</h3>
+        <p>Tableau électrique, mise aux normes NF C 15-100, pose de prises et luminaires. Certification CONSUEL pour vos logements en location ou en vente.</p>
+        <a href="#contact" class="service-link">Demander un devis <span>→</span></a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">05</div>
+        <span class="service-icon">🪟</span>
+        <h3>Menuiserie & Agencement</h3>
+        <p>Parquet, carrelage, faïence, faux plafonds, portes intérieures et dressing sur mesure. Des finitions soignées qui font toute la différence dans votre intérieur.</p>
+        <a href="#contact" class="service-link">Demander un devis <span>→</span></a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">06</div>
+        <span class="service-icon">🎨</span>
+        <h3>Peinture & Ravalement</h3>
+        <p>Peinture intérieure et extérieure, enduits décoratifs, ravalement de façade. Nos peintres qualifiés interviennent sur appartements, parties communes et façades d'immeubles.</p>
+        <a href="#contact" class="service-link">Demander un devis <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="projects" id="projects">
+  <div class="section-inner">
+    <div class="projects-header">
+      <div>
+        <p class="section-tag reveal">Nos Réalisations</p>
+        <h2 class="section-title reveal">Des intérieurs qui <em>transforment</em></h2>
+      </div>
+      <a href="#" class="btn-ghost reveal">Tout voir →</a>
+    </div>
+    <div class="project-filters reveal">
+      <button class="filter-btn active">Tous</button>
+      <button class="filter-btn">Appartements</button>
+      <button class="filter-btn">Parties Communes</button>
+      <button class="filter-btn">Peinture</button>
+      <button class="filter-btn">Façades</button>
+    </div>
+
+    <!-- PLACEHOLDER — À remplacer par les vraies photos de chantiers GG Bati -->
+    <div class="projects-placeholder reveal">
+      <div class="placeholder-inner">
+        <div class="placeholder-icon">📸</div>
+        <h3>Vos réalisations arrivent bientôt</h3>
+        <p>Cette section sera enrichie avec les photos de vos vrais chantiers.<br>Envoyez-nous vos meilleures photos pour les afficher ici.</p>
+        <a href="#contact" class="btn-primary" style="margin-top: 32px; display: inline-flex;">Nous envoyer des photos →</a>
+      </div>
+      <div class="placeholder-grid">
+        <div class="placeholder-card">
+          <div class="placeholder-img-area">
+            <span>📷</span>
+            <p>Chantier 1</p>
+          </div>
+        </div>
+        <div class="placeholder-card">
+          <div class="placeholder-img-area">
+            <span>📷</span>
+            <p>Chantier 2</p>
+          </div>
+        </div>
+        <div class="placeholder-card">
+          <div class="placeholder-img-area">
+            <span>📷</span>
+            <p>Chantier 3</p>
+          </div>
+        </div>
+        <div class="placeholder-card">
+          <div class="placeholder-img-area">
+            <span>📷</span>
+            <p>Chantier 4</p>
+          </div>
+        </div>
+        <div class="placeholder-card">
+          <div class="placeholder-img-area">
+            <span>📷</span>
+            <p>Chantier 5</p>
+          </div>
+        </div>
+        <div class="placeholder-card">
+          <div class="placeholder-img-area">
+            <span>📷</span>
+            <p>Chantier 6</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="process" id="process">
+  <div class="section-inner">
+    <div style="max-width:600px">
+      <p class="section-tag reveal">Notre Méthode</p>
+      <h2 class="section-title reveal">Un processus <em>éprouvé</em></h2>
+      <p class="section-desc reveal">Chaque projet suit une méthodologie rigoureuse qui garantit qualité, respect des délais et satisfaction totale.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <h3>Visite & Diagnostic</h3>
+        <p>Nous nous déplaçons gratuitement chez vous à Fontenay-sous-Bois et en Val-de-Marne pour évaluer vos travaux et comprendre votre projet.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <h3>Devis Détaillé</h3>
+        <p>Remise d'un devis transparent et précis sous 48h, avec le détail des matériaux, des prestations et du planning d'intervention.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <h3>Chantier Propre</h3>
+        <p>Nos artisans interviennent avec soin, en protégeant vos meubles et votre logement. Nettoyage complet à la fin de chaque journée.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-num">04</div>
+        <h3>Remise des Clés</h3>
+        <p>Visite de réception avec vous pour valider chaque détail. Garantie décennale et suivi après travaux inclus dans chaque prestation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials" id="testimonials">
+  <div class="section-inner">
+    <p class="section-tag reveal">Témoignages</p>
+    <h2 class="section-title reveal">Ce que disent <em>nos clients</em></h2>
+
+    <!-- ⚠️ SECTION À COMPLÉTER — ajoutez ici vos vrais avis clients -->
+    <div class="testimonials-placeholder reveal">
+      <div class="placeholder-inner">
+        <div class="placeholder-icon">⭐</div>
+        <h3>Vos avis clients arrivent ici</h3>
+        <p>Demandez à vos clients satisfaits de laisser un avis Google ou de vous envoyer un témoignage.<br>Nous l'afficherons ici avec leur prénom et leur type de projet.</p>
+        <div class="tpl-slots">
+          <div class="tpl-slot">
+            <div class="tpl-stars">★★★★★</div>
+            <p class="tpl-text">« Témoignage client à ajouter »</p>
+            <p class="tpl-author">— Prénom N., Ville</p>
+          </div>
+          <div class="tpl-slot">
+            <div class="tpl-stars">★★★★★</div>
+            <p class="tpl-text">« Témoignage client à ajouter »</p>
+            <p class="tpl-author">— Prénom N., Ville</p>
+          </div>
+          <div class="tpl-slot">
+            <div class="tpl-stars">★★★★★</div>
+            <p class="tpl-text">« Témoignage client à ajouter »</p>
+            <p class="tpl-author">— Prénom N., Ville</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="team" id="team">
+  <div class="section-inner">
+    <p class="section-tag reveal">Notre Équipe</p>
+    <h2 class="section-title reveal">Les <em>artisans</em> derrière chaque chantier</h2>
+
+    <!-- ⚠️ SECTION À COMPLÉTER — ajoutez ici les vraies photos et noms de votre équipe -->
+    <div class="team-placeholder reveal">
+      <div class="placeholder-inner">
+        <div class="placeholder-icon">👷</div>
+        <h3>Présentez votre équipe</h3>
+        <p>Ajoutez ici les photos et prénoms de vos artisans et collaborateurs.<br>Une équipe visible inspire confiance à vos futurs clients.</p>
+      </div>
+      <div class="team-slots">
+        <div class="team-slot">
+          <div class="team-slot-photo"><span>👤</span></div>
+          <p class="team-slot-name">Prénom — Poste</p>
+        </div>
+        <div class="team-slot">
+          <div class="team-slot-photo"><span>👤</span></div>
+          <p class="team-slot-name">Prénom — Poste</p>
+        </div>
+        <div class="team-slot">
+          <div class="team-slot-photo"><span>👤</span></div>
+          <p class="team-slot-name">Prénom — Poste</p>
+        </div>
+        <div class="team-slot">
+          <div class="team-slot-photo"><span>👤</span></div>
+          <p class="team-slot-name">Prénom — Poste</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-tag reveal">Parlons de votre projet</p>
+        <h2 class="reveal">Votre projet de <em>rénovation</em><br>commence ici</h2>
+        <p class="reveal">Basés à Fontenay-sous-Bois, nous intervenons dans tout le Val-de-Marne. Contactez-nous pour un devis gratuit et une visite à domicile sous 48h.</p>
+        <div class="contact-details">
+          <div class="contact-item reveal">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <p class="contact-item-label">Notre Adresse</p>
+              <p class="contact-item-value">92 Avenue Victor Hugo<br>94120 Fontenay-sous-Bois</p>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-item-icon">📞</div>
+            <div>
+              <p class="contact-item-label">Téléphone</p>
+              <!-- ✏️ REMPLACEZ LE NUMÉRO CI-DESSOUS PAR LE VÔTRE -->
+              <a href="tel:+33XXXXXXXXX" class="contact-item-value contact-link" id="phoneDisplay">+33 X XX XX XX XX<br><small style="color:var(--color-gold);font-size:0.7rem">⚠️ À mettre à jour</small></a>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-item-icon">✉</div>
+            <div>
+              <p class="contact-item-label">Email</p>
+              <!-- ✏️ REMPLACEZ L'EMAIL CI-DESSOUS PAR LE VÔTRE -->
+              <a href="mailto:contact@ggbati.fr" class="contact-item-value contact-link" id="emailDisplay">contact@ggbati.fr<br><small style="color:var(--color-gold);font-size:0.7rem">⚠️ À confirmer</small></a>
+            </div>
+          </div>
+          <div class="contact-item reveal reveal-delay-3">
+            <div class="contact-item-icon">🗺️</div>
+            <div>
+              <p class="contact-item-label">Zone d'Intervention</p>
+              <p class="contact-item-value">Fontenay, Vincennes, Nogent, Saint-Mandé, Montreuil et tout le Val-de-Marne</p>
+            </div>
+          </div>
+        </div>
+        <!-- Google Maps embed -->
+        <div class="map-embed reveal" style="margin-top: var(--sp-8);">
+          <iframe
+            src="https://www.google.com/maps?q=92+Avenue+Victor+Hugo,+94120+Fontenay-sous-Bois&output=embed"
+            width="100%" height="200" style="border:0; border-radius:2px; filter:grayscale(80%) invert(90%) contrast(85%);"
+            allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3 class="form-title">Demandez votre devis gratuit</h3>
+        <p style="font-size:var(--text-caption);color:var(--color-mist);margin-bottom:var(--sp-6);">
+          Remplissez ce formulaire — il ouvrira votre messagerie avec toutes les informations pré-remplies pour nous les envoyer directement.
+        </p>
+
+        <!-- Validation message -->
+        <div id="formError" style="display:none; background:rgba(139,58,58,0.15); border:1px solid var(--color-error); color:#e07070; padding:12px 16px; border-radius:2px; font-size:var(--text-caption); margin-bottom:var(--sp-4);">
+          Merci de remplir tous les champs obligatoires (*).
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Prénom *</label>
+            <input type="text" id="fname" placeholder="Jean" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="lname">Nom *</label>
+            <input type="text" id="lname" placeholder="Dupont" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cemail">Votre Email *</label>
+            <input type="email" id="cemail" placeholder="jean@exemple.fr" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="phone">Votre Téléphone *</label>
+            <input type="tel" id="phone" placeholder="06 00 00 00 00" required autocomplete="tel">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Adresse du chantier</label>
+          <input type="text" id="address" placeholder="Ex : 12 rue de Rosny, Fontenay-sous-Bois" autocomplete="street-address">
+        </div>
+        <div class="form-group">
+          <label for="service">Type de Travaux *</label>
+          <select id="service" required>
+            <option value="">Sélectionner...</option>
+            <option>Peinture intérieure — appartement</option>
+            <option>Peinture — parties communes / immeuble</option>
+            <option>Ravalement de façade</option>
+            <option>Pose de sol (parquet, carrelage)</option>
+            <option>Rénovation complète d'appartement</option>
+            <option>Salle de bain</option>
+            <option>Cuisine</option>
+            <option>Plomberie & Sanitaires</option>
+            <option>Électricité & Mise aux normes</option>
+            <option>Vitrerie & Menuiserie</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="budget">Budget Estimé</label>
+          <select id="budget">
+            <option value="">Non défini / Je ne sais pas encore</option>
+            <option>Moins de 2 000 €</option>
+            <option>2 000 – 5 000 €</option>
+            <option>5 000 – 15 000 €</option>
+            <option>15 000 – 50 000 €</option>
+            <option>Plus de 50 000 €</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Décrivez vos travaux *</label>
+          <textarea id="message" placeholder="Ex : Peinture complète d'un appartement T3 de 65 m² au 3e étage, murs et plafonds, 2 chambres + salon + couloir. État actuel : peinture ancienne à rénover." required></textarea>
+        </div>
+        <button class="form-submit" type="button" id="formSubmitBtn" onclick="submitContactForm()">
+          Envoyer ma demande par email <span>→</span>
+        </button>
+        <p style="font-size:var(--text-caption);color:var(--color-mist);margin-top:var(--sp-3);text-align:center;">
+          Votre messagerie s'ouvrira avec les informations pré-remplies.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-main">
+    <div class="footer-brand">
+      <h3>GG <span>Bati</span></h3>
+      <p>Spécialiste de la peinture, vitrerie et rénovation intérieure à Fontenay-sous-Bois et dans tout le Val-de-Marne. SAS créée en juin 2021.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" aria-label="LinkedIn">in</a>
+        <a href="#" class="footer-social" aria-label="Facebook">f</a>
+        <a href="#" class="footer-social" aria-label="Instagram">⬡</a>
+        <a href="#" class="footer-social" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+          <li><a href="#">Rénovation Appartement</a></li>
+          <li><a href="#">Parties Communes</a></li>
+          <li><a href="#">Salle de Bain</a></li>
+          <li><a href="#">Cuisine</a></li>
+          <li><a href="#">Électricité & Plomberie</a></li>
+          <li><a href="#">Ravalement de Façade</a></li>
+        </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Entreprise</h4>
+      <ul>
+        <li><a href="#">À Propos</a></li>
+        <li><a href="#">Notre Équipe</a></li>
+        <li><a href="#">Nos Réalisations</a></li>
+        <li><a href="#">Témoignages</a></li>
+        <li><a href="#">Certifications</a></li>
+        <li><a href="#">Carrières</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">Demander un Devis</a></li>
+        <li><a href="#">Nos Agences</a></li>
+        <li><a href="#">SAV & Garanties</a></li>
+        <li><a href="#">Blog & Actualités</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Presse</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 GG Bati SAS — 92 Av. Victor Hugo, 94120 Fontenay-sous-Bois — SIREN 900 517 467</p>
+    <div class="footer-bottom-links">
+      <a href="#">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+      <a href="#">CGV</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── JAVASCRIPT ─────────────────────────────────────────── -->
+<script>
+/* ── Navbar scroll ──────────────────────────── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── Hero parallax ──────────────────────────── */
+const heroBg = document.getElementById('heroBg');
+setTimeout(() => heroBg.classList.add('loaded'), 100);
+window.addEventListener('scroll', () => {
+  if (window.scrollY < window.innerHeight) {
+    heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.3}px)`;
+  }
+});
+
+/* ── Scroll reveal ──────────────────────────── */
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => revealObserver.observe(el));
+
+/* ── Counter animation ──────────────────────── */
+function animateCount(el) {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '+';
+  const dur = 2000;
+  const start = performance.now();
+  const update = (now) => {
+    const p = Math.min((now - start) / dur, 1);
+    const val = Math.round(p * target);
+    el.textContent = val + suffix;
+    if (p < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCount(e.target);
+      counterObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stat-number').forEach(el => counterObserver.observe(el));
+
+/* ── Project filters ────────────────────────── */
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* ── Mobile menu ────────────────────────────── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.onclick = () => mobileMenu.classList.toggle('open');
+function closeMobile() { mobileMenu.classList.remove('open'); }
+
+/* ── Real contact form → mailto ─────────────── */
+function submitContactForm() {
+  const fname   = document.getElementById('fname').value.trim();
+  const lname   = document.getElementById('lname').value.trim();
+  const cemail  = document.getElementById('cemail').value.trim();
+  const phone   = document.getElementById('phone').value.trim();
+  const address = document.getElementById('address').value.trim();
+  const service = document.getElementById('service').value;
+  const budget  = document.getElementById('budget').value;
+  const message = document.getElementById('message').value.trim();
+  const errEl   = document.getElementById('formError');
+
+  // Validation des champs obligatoires
+  if (!fname || !lname || !cemail || !phone || !service || !message) {
+    errEl.style.display = 'block';
+    errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  errEl.style.display = 'none';
+
+  // ✏️ REMPLACEZ cet email par l'adresse email réelle de GG Bati
+  const destEmail = 'contact@ggbati.fr';
+
+  const subject = encodeURIComponent(`Demande de devis — ${service} — ${fname} ${lname}`);
+
+  const body = encodeURIComponent(
+`Nouvelle demande de devis reçue via le site GG Bati
+===============================================
+
+COORDONNÉES DU CLIENT
+Nom       : ${fname} ${lname}
+Email     : ${cemail}
+Téléphone : ${phone}
+
+DÉTAILS DU PROJET
+Type de travaux : ${service}
+${address ? `Adresse du chantier : ${address}` : ''}
+Budget estimé : ${budget || 'Non précisé'}
+
+DESCRIPTION
+${message}
+
+===============================================
+Message envoyé depuis le formulaire de contact — ggbati.fr`
+  );
+
+  // Ouvre le client mail avec tout pré-rempli
+  window.location.href = `mailto:${destEmail}?subject=${subject}&body=${body}`;
+
+  // Feedback visuel
+  const btn = document.getElementById('formSubmitBtn');
+  btn.innerHTML = '✓ Votre messagerie s\'ouvre… <span>→</span>';
+  btn.style.background = '#4A7C59';
+  setTimeout(() => {
+    btn.innerHTML = 'Envoyer ma demande par email <span>→</span>';
+    btn.style.background = '';
+  }, 4000);
+}
+
+/* ── Smooth scroll with offset ──────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const offset = 80;
+    window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
